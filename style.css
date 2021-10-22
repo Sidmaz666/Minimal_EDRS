@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Shadows+Into+Light&display=swap');
+body{
+overflow:auto;
+height:100%;
+box-sizing:border-box;
+background:#23262b;
+color:#ffffff;
+font-family: 'Handlee', cursive;
+}
+.main{
+padding:4%;
+border: 3px solid #155c59;
+max-width:50%;
+text-align:center;
+margin:110px auto;
+}
+.username , .password , .cpassword , .email , .department{
+height:15px;
+width: 90%;
+padding:1%;
+margin: 5px auto;
+border: 2px solid #155c59;
+background:#23262b;
+color: #ffffff;
+}
+
+input:hover ,.regbtn:hover , .login-btn:hover , select:hover {
+	border:2px solid #18c974;
+}
+.login-btn ,.regbtn {
+width:50%;
+font-size: 16px;
+font-family: 'Handlee', cursive;
+height:35px;
+padding:5px;
+margin:5px;
+border: 2px solid #155c59;
+background: #23262b;
+color: #ffffff;
+cursor:pointer;
+}
+.department{
+height:40px;
+color:#ffffff;
+position:relative;
+font-family: 'Handlee', cursive;
+cursor:pointer;
+}
+/* CheckBox is Frustrating Kela :) */
+.annoying_checkbox{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.annoying_checkbox span{
+	padding-right:3%;
+}
+.annoying_checkbox label{
+	cursor:pointer;
+	padding:2%;
+	display:flex;
+	padding-left:5px;
+}
+.annoying_checkbox input[type='checkbox']{
+	cursor:pointer;
+	position:absolute;
+	width:inherit;
+	opacity:0;
+	
+}
+.annoying_checkbox label:hover::before{
+	padding:2%;
+} 
+.annoying_checkbox input[type='checkbox']:hover, 
+.annoying_checkbox label:hover::before ,.annoying_checkbox label span{
+	content:"";
+	width: inherit;
+	height: inherit;
+	margin:1%;
+	padding:5%;
+
+}
+.annoying_checkbox label span{
+border-bottom:2px solid #155c59;
+}
+.annoying_checkbox label{
+	color:#18c974;
+}
+.annoying_checkbox label span{
+	color:#ffffff;
+}
+.annoying_checkbox input:checked ~ span{
+	content:"*";
+	width: 100%;
+	height: inherit;
+	padding:5%;
+	margin:1%;
+	display:block;
+	border-bottom:4px solid  #18c974;
+
+
+}
+/*
+Matha Beya Hoi Gol :) 
+
+ */
+::selection {
+  background:#155c59;
+}
+a{
+text-decoration:none;
+color:#155c59;
+}
+a:hover{
+	color:#18c874;
+}
+@media (max-width:600px){
+
+h1{
+font-size:14px;
+}
+.login-btn{
+font-size:10px;
+}
+.regbtn , u , button {
+min-width:100%;
+margin-top:20px;
+}
+label{
+font-size:11px;
+}
+.annoying_checkbox{
+	display: inline-block;
+}
+.annoying_checkbox span{
+	padding-right:1%;
+}
+.annoying_checkbox label{
+	padding-top:5px;
+}
+}
+/* More Annoying Stuff */
+
+div {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+}
+input[type=date] {
+  height: 35px; 
+  margin: 0 auto;
+  width: 100%;
+  font-family: arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: lighten(#2f2f2f,40%);
+  outline: none;
+  border: 0;
+  border-radius: 3px;
+  padding: 0 3px;
+  color: #fff;
+  
+  &::-webkit-datetime-edit-month-field {
+    color: red;
+  }
+  &::-webkit-datetime-edit-day-field {
+    color: white;
+  }
+  &::-webkit-datetime-edit-year-field {
+    color: blue;
+  }
+  
+  &::-webkit-clear-button {
+    font-size: 18px;
+    height: 30px;
+    position: relative;
+    right: 5px;
+    margin-right: 4px;
+  }
+  &::-webkit-inner-spin-button {
+    height: 30px;
+  }
+  &::-webkit-calendar-picker-indicator {
+    font-size: 18px;
+    
+        
+    &:hover {
+      background-color: lighten(#2f2f2f,40%);
+      color: darken(#fff, 10%);
+      cursor: pointer;
+    }
+    &:active {
+      color: blue;
+    }
+  }
+}
+
+
+
