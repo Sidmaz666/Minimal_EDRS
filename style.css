@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Shadows+Into+Light&display=swap');
 body{
-overflow:auto;
+overflow:hidden;
 height:100%;
 box-sizing:border-box;
 background:#23262b;
@@ -141,24 +141,15 @@ font-size:11px;
 }
 /* More Annoying Stuff */
 
-div {
-  width: 200px;
-  height: 100px;
-  margin: 0 auto;
-}
 input[type=date] {
-  height: 35px; 
-  margin: 0 auto;
-  width: 100%;
-  font-family: arial, sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
+  height: 30px; 
+  margin-top: 1.2%;
+  width: 22%;
+  font-size: 12px;
   background-color: lighten(#2f2f2f,40%);
-  outline: none;
+  outline: 2px solid #155c59;
   border: 0;
-  border-radius: 3px;
-  padding: 0 3px;
+  padding: 0px 3px;
   color: #fff;
   
   &::-webkit-datetime-edit-month-field {
