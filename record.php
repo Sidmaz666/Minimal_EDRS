@@ -16,6 +16,10 @@ echo "
 <br/><center><h1> Employee Records</h1></center>
 <div class=main style='border:0; max-width:90%'>
 <style type='text/css'>
+			body{
+				height:98.4%;
+				overflow:auto;
+			}
 			.main{
 				text-align:left;
 			}
