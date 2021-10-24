@@ -71,12 +71,8 @@ if($check_res > 0){
  			   background-color:#23262b;
 			}
 		   </style>
-			   $uid_err
-			   $pass_err ";
-			echo $_SESSION["ac_creation_prompt"];
-			if (!empty($_SESSION["ac_creation_prompt"])){
-				$_SESSION["ac_creation_prompt"] = "";
-				}
+			    ";
+			
 ?>
 
 	<h1><\<?php echo "  ".$fullname ?>/> </h2>
@@ -126,9 +122,11 @@ display:none;
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 					<input class="date" placeholder="Date" type="date" name="date" min="<?php  echo $curr_date; ?>"
 					 value="<?php  echo $curr_date; ?>" max="<?php  echo $curr_date; ?>"><br/>
-					<button class="login-btn hide" type="submit" ><b> Check-in</b> </button>
+					<button class="login-btn hide" type="submit" ><b> Check-In</b> </button>
 				</form>
-
+				<?php if($username == "admin"){ ?>
+				<a href="record.php"><input type="button" style="font-weight:bold" class="login-btn" value="View Employee Records"></a>		
+				<?php } ?>
 
 				<a href="logout.php"><input type="button" class="login-btn" value="Logout!"></a>	
 	</div>
