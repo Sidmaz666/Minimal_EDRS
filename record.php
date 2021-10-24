@@ -14,7 +14,6 @@ echo "
 <link rel='stylesheet' href='style.css'>
 	<link rel='shortcut icon' href='https://www.pinclipart.com/picdir/big/344-3445944_png-file-svg-terminal-icon-png-clipart.png'>
 <br/><center><h1> Employee Records</h1></center>
-<div class=main style='border:0; max-width:90%'>
 <style type='text/css'>
 			body{
 				height:98.4%;
@@ -36,9 +35,18 @@ echo "
 			.ge{color:#1ac79c;}
 			i{color:#b5d904}
 				.con{color:#d408c9}
+			table, th, td {
+			  border:2px solid #155c59;
+				padding:5px;
+			}	
 		   </style>
-
-
+<div class=main style='border:0; max-width:100%; margin-top: 1%'>
+<table style='width:100%;font-size:20px'>
+<tr>
+<th><b class=pu><big></big> </b>User<i><big> ▼</big></i> </th>
+<th><b class=ge><big>ﮮ</big></b> Present On<i><big> ▼</big></i> </th>
+<th> <i class=con><big> </big></i>  Contact<i><big> ▼</big></i> </th>
+</tr>
 ";
 require_once('maria.php');
 $select_record = "select * from employee_record" ;
@@ -49,7 +57,13 @@ if($check_rec > 0){
 		$fullname = $erecord['fullname'];
 		$email = $erecord['email'];
 		$check_time = $erecord['checkin_time'];
-		 echo "<span class=error><b class=pu><big></big> </b>User<i><big> </big></i> <b class=pu> $fullname</b><b class=ge><big>ﮮ</big></b> Attendence-Time<i><big> </big></i> <b class=ge> $check_time</b> <i class=con><big> </big></i>  Contact<i><big> </big></i> <i class=con> $email</i><span> <br/><br/>";
+	echo	"<tr>
+		  <td><b class=pu> $fullname</b></td>
+		  <td>  <b class=ge> $check_time</b> </td>
+		  <td> <i class=con> $email</i><span>  </td>
+			 </tr>";
+
+
 	}
 }
 echo "</div>";
