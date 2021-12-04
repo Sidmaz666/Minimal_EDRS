@@ -11,7 +11,6 @@ require_once('maria.php');
 // User Inputs VAR...
 $username = $fullname = $email = $gender = $department = $password = $cpassword = "";
 $username_err = $password_err = $email_err = $cpassword_err = $fullname_err = "";
-
 //On POST REQ
 // Form Validation
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
