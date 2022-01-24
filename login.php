@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		?>
 
 		<h1>
-			<\Login />
+			<\Login/>
 			</h2>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 				<input id="" class="username" name="uid" type="text" placeholder="Username/Email@xyz.com">

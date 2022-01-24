@@ -13,6 +13,8 @@ if ($connection->query($dbcreate) === TRUE) {
 	if ($db_connection->connect_error) {
 		die("Unable to create the Database " . $db_connection->connect_error);
 	}
+
+
 	$tablecreate = "CREATE TABLE IF NOT EXISTS employee_details (ID int(11) AUTO_INCREMENT,
 		      fullname varchar(255) NOT NULL,
 			email varchar(255) NOT NULL,
@@ -27,6 +29,7 @@ if ($connection->query($dbcreate) === TRUE) {
 	} else {
 		echo "Database & Tables Created" . $db_connection->error;
 	}
+
 	$erecordtable = "CREATE TABLE IF NOT EXISTS employee_record (ID int(11) AUTO_INCREMENT,
 		      fullname varchar(255) NOT NULL,
 			email varchar(255) NOT NULL,
@@ -41,3 +44,19 @@ if ($connection->query($dbcreate) === TRUE) {
 } else {
 	echo "Error creating database: " . $connection->error;
 }
+
+	$moreinfo = "CREATE TABLE IF NOT EXISTS employee_private_details (ID int(11) AUTO_INCREMENT,
+		        fullname varchar(255) NOT NULL,
+			email varchar(255) NOT NULL,
+			username varchar(255) NOT NULL,
+			phone varchar(255) NOT NULL,
+			location varchar(255) NOT NULL,
+			description varchar(255) NOT NULL,
+			creation_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,	
+		      PRIMARY KEY  (ID))";
+
+
+		if ($db_connection->query($moreinfo) === TRUE) {
+		} else {
+		echo "Error Creating Private Employee table" . $db_connection->error;
+		}

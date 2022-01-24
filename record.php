@@ -42,7 +42,7 @@ echo "
 <th><b class=pu><big></big> </b>user<i><big> ▼</big></i> </th>
 <th><b class=ge><big>ﮮ</big></b> Present On<i><big> ▼</big></i> </th>
 <th> <i class=con><big> </big></i>  Contact<i><big> ▼</big></i> </th>
-<th><b class=pu><big></big> </b>Delete Logs<i><big> ▼</big></i> </th>
+<th><b class=pu><big></big> </b>Delete Logs<i><big> ▼</big></i> </th>
 </tr>
 ";
 require_once('maria.php');
@@ -75,7 +75,7 @@ outline:none;
 }
 </style>
   <a href='delete.php?id=$id'> 
-	<button class='delbtn' name='delbtn'> Delete </button>
+	<button class='delbtn' name='delbtn'> Delete </button>
 		</a>
 			 </td>
 			 </tr>";

@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Shadows+Into+Light&display=swap');
+@import url('iosevka.ttf');
+*{
+font-family: 'Iosevka Term', cursive;
+}
 body{
-overflow:hidden;
 height:100%;
 box-sizing:border-box;
 background:#23262b;
 color:#ffffff;
-font-family: 'Handlee', cursive;
 }
 .main{
 padding:4%;
