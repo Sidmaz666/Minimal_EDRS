@@ -97,11 +97,6 @@ if ($check_existance > 0) {
 		<h1>
 			<\<?php echo "  " . $fullname ?> />
 			</h2>
-		<div class="errs">
-
-		<span class=error> Unable to Update Account!</span>
-
-		</div>
 			<?php echo "<span class=error><span class=udetails> Employee Name<span class=arrow> &#10150;</span> " . $fullname . "</span></span><span class=error><span class=udetails>ﮮ Account Creation Date/Time<span class=arrow> &#10150;</span> " . $creation_time . "</span></span><span class=error><span class=udetails>  Classified As<span class=arrow> &#10150;</span> " . $department . "</span></span><span class=error><span class=udetails>  Seen As<span class=arrow> &#10150;</span> " . $gender . "</span></span><span class=error><span class=udetails> Alias/Username<span class=arrow> &#10150;</span> " . $username . "</span></span><span class=error><span class=udetails>  Email<span class=arrow> &#10150;</span> " . $email . "</span></span><span class=error><span class=udetails>ﮮ DOB<span class=arrow> &#10150;</span> " . $dob . "</span></span> ";   ?>
 
 <?php
@@ -112,33 +107,6 @@ if ($check_existance > 0) {
 		echo "<span class=error><span class=udetails> About/Bio<span class=arrow> &#10150;</span>".$descriptions."</span></span>";
 		echo "<span class=error><span class=udetails> ⏱  Updated On <span class=arrow> &#10150;</span>".$creation_times."</span></span>";
 		}
-
-if(isset($_POST["updatepro"])){
-
-  		$g_phone=$_POST['phone'];
-  		$g_location=$_POST['location'];
-  		$g_description=$_POST['description'];
-
-		$update_profile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
-		$upyou = mysqli_query($db_connection,$update_profile);
-		if($upyou){
-		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
-		 header("refresh:5; url=index.php");
-	} else {
-	  echo "<span class=error> Unable to Update! Retrying...</span>";
-		$updateprofile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
-		$upyouu = mysqli_query($db_connection,$updateprofile);
-		if($upyouu){
-		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
-		 header("refresh:5; url=index.php");
-	} else {
-		  echo "<span class=error> Unable to Update Account!</span>";
-
-	}
-
-	}
-}
-
 
 
 			$checkin_record = "select * from employee_record where username = '$username'";
@@ -174,6 +142,47 @@ if(isset($_POST["updatepro"])){
 				}}
 
 
+if(isset($_POST["updatepro"])){
+
+  		$g_phone=$_POST['phone'];
+  		$g_location=$_POST['location'];
+  		$g_description=$_POST['description'];
+
+		$update_profile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
+		$upyou = mysqli_query($db_connection,$update_profile);
+		if($upyou){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+	} else {
+		$updateprofile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
+		$upyouu = mysqli_query($db_connection,$updateprofile);
+		if($upyouu){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+	} else {
+	
+		$updateprofile = mysqli_query($db_connection,"INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')");
+		if($updateprofile){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+	} else {
+
+		$updateprofile = mysqli_query($db_connection,"INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')");
+		if($updateprofile){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+		}
+		  echo "<span class=error> Unable to Update Try Again!</span>";
+
+	}
+
+	}
+
+
+	}
+}
+
+
 			if(isset($_POST['deleteinfo'])){
 			$deleteinformation = "DELETE FROM employee_private_details WHERE ID = '$ido'";
 			$delcon = mysqli_query($db_connection,$deleteinformation);
@@ -186,7 +195,7 @@ if(isset($_POST["updatepro"])){
 
 ?>
 
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<form action="" method="post">
 				<input class="date" placeholder="Date" type="date" name="date" min="<?php echo $curr_date; ?>" value="<?php echo $curr_date; ?>" max="<?php echo $curr_date; ?>"><br />
 				<button class="login-btn hide" name="checkinbtn" type="submit"><b> Check-In</b> </button>
 			</form>
