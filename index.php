@@ -20,6 +20,21 @@ if ($check_res > 0) {
 		$email = $info['email'];
 		$creation_time = $info['creation_time'];
 		$dob = $info['birthdate'];
+	}}
+
+$fetch_emp_pvd = "select * from employee_private_details where username = '$username'";
+$fetch_query = mysqli_query($db_connection, $fetch_emp_pvd);
+$check_existance = mysqli_num_rows($fetch_query);
+if ($check_existance > 0) {
+	while ($pvd = mysqli_fetch_assoc($fetch_query)) {
+		$p_fullname = $pvd['fullname'];
+		$p_email = $pvd['email'];
+		$p_username = $pvd['username'];
+		$phoneno = $pvd['phone'];
+		$locatioa = $pvd['location'];
+		$creation_times = $pvd['creation_time'];
+		$descriptions = $pvd['description'];
+		$ido= $pvd['ID'];
 	}
 }
 
@@ -82,50 +97,48 @@ if ($check_res > 0) {
 		<h1>
 			<\<?php echo "  " . $fullname ?> />
 			</h2>
+		<div class="errs">
 
+		<span class=error> Unable to Update Account!</span>
+
+		</div>
 			<?php echo "<span class=error><span class=udetails> Employee Name<span class=arrow> &#10150;</span> " . $fullname . "</span></span><span class=error><span class=udetails>ﮮ Account Creation Date/Time<span class=arrow> &#10150;</span> " . $creation_time . "</span></span><span class=error><span class=udetails>  Classified As<span class=arrow> &#10150;</span> " . $department . "</span></span><span class=error><span class=udetails>  Seen As<span class=arrow> &#10150;</span> " . $gender . "</span></span><span class=error><span class=udetails> Alias/Username<span class=arrow> &#10150;</span> " . $username . "</span></span><span class=error><span class=udetails>  Email<span class=arrow> &#10150;</span> " . $email . "</span></span><span class=error><span class=udetails>ﮮ DOB<span class=arrow> &#10150;</span> " . $dob . "</span></span> ";   ?>
 
-
-
-
 <?php
-
-if(isset($_POST["updatepro"])){
-
-  $phone=$_POST['phone'];
-  $location=$_POST['location'];
-  $description=$_POST['description'];
-
-		$query_user = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$phone','$location','$description')";
-		$upyou = mysqli_query($db_connection,$query_user);
-		if($upyou){
-		echo "<span class=error> $username, Profile Updated!</span>";	
-	} else {
-		  $password_err ="<span class=error> Unable to Update Account!</span>";
-
-	}
-}
-
-$fetch_emp_pvd = "select * from employee_private_details where username = '$username'";
-$fetch_query = mysqli_query($db_connection, $fetch_emp_pvd);
-$check_existance = mysqli_num_rows($fetch_query);
-if ($check_existance > 0) {
-	while ($pvd = mysqli_fetch_assoc($fetch_query)) {
-		$p_fullname = $pvd['fullname'];
-		$p_email = $pvd['email'];
-		$p_username = $pvd['username'];
-		$phoneno = $pvd['phone'];
-		$locatioa = $pvd['location'];
-		$creation_times = $pvd['creation_time'];
-		$descriptions = $pvd['description'];
-		$ido= $pvd['ID'];
+		if ($ido > 0){
 		echo "<h2><b>More Details of $p_fullname / Profile Update History<b></h2>";
 		echo "<span class=error><span class=udetails> Phone Number<span class=arrow> &#10150;</span>".$phoneno."</span></span>";
 		echo "<span class=error><span class=udetails> Location/Address<span class=arrow> &#10150;</span>".$locatioa."</span></span>";
 		echo "<span class=error><span class=udetails> About/Bio<span class=arrow> &#10150;</span>".$descriptions."</span></span>";
 		echo "<span class=error><span class=udetails> ⏱  Updated On <span class=arrow> &#10150;</span>".$creation_times."</span></span>";
+		}
+
+if(isset($_POST["updatepro"])){
+
+  		$g_phone=$_POST['phone'];
+  		$g_location=$_POST['location'];
+  		$g_description=$_POST['description'];
+
+		$update_profile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
+		$upyou = mysqli_query($db_connection,$update_profile);
+		if($upyou){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+	} else {
+	  echo "<span class=error> Unable to Update! Retrying...</span>";
+		$updateprofile = "INSERT INTO `employee_private_details` (fullname,email,username,phone,location,description) VALUES ('$fullname','$email','$username','$g_phone','$g_location','$g_description')";
+		$upyouu = mysqli_query($db_connection,$updateprofile);
+		if($upyouu){
+		  echo "<span class=error> $username Profile Updated! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+	} else {
+		  echo "<span class=error> Unable to Update Account!</span>";
+
+	}
+
 	}
 }
+
 
 
 			$checkin_record = "select * from employee_record where username = '$username'";
@@ -140,9 +153,9 @@ if ($check_existance > 0) {
 
 			$curr_date = date("Y-m-d");
 
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
-				if(isset($_POST['checkinbtn'])){
+				if(isset($_POST['checkinbtn']))
+				{
 				if ($curr_date == $checkin_time) {
 					echo "<span class=error>✔ Already Checked In for today! </span>
 						<style>
@@ -158,10 +171,16 @@ if ($check_existance > 0) {
 						display:none;
 						}
 						</style>";
-				}
+				}}
 
 
-				}
+			if(isset($_POST['deleteinfo'])){
+			$deleteinformation = "DELETE FROM employee_private_details WHERE ID = '$ido'";
+			$delcon = mysqli_query($db_connection,$deleteinformation);
+			if($delcon){
+		  echo "<span class=error> $username Profile Info Deleted! Redirecting...</span>";
+		 header("refresh:5; url=index.php");
+			}
 			}
 
 
@@ -174,27 +193,21 @@ if ($check_existance > 0) {
 			<?php if ($username == "admin") { ?>
 				<a href="record.php"><input type="button" style="font-weight:bold" class="login-btn" value="View Employee Records"></a>
 			<?php } ?>
-<?php
-			if(isset($_POST['deleteinfo'])){
-			$deleteinformation = "DELETE FROM employee_private_details WHERE ID = '$ido'";
-			$delcon = mysqli_query($db_connection,$deleteinformation);
-			if($delcon){
-			  header("location: ./");
-			}
-			}
-			if($ido > 0){
-			  echo "<style>.headache{display:none}</style>";
 
-?>
-	
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			<button style="font-weight:bold" name="deleteinfo" class="login-btn" >Delete & Update Profile!</button>
+
+			<?php if ( $ido > 0) { ?>
+			<form action="" method="post">
+			<button style="font-weight:bold" name="deleteinfo" class="login-btn"> Delete_&_Update_Profile!</button>
 			</form>
-<?php
-
+			<style>
+			.headache{
+			display:none;
 			}
-?> 			
+			</style>
+			<?php } ?> 			
+
 			<div class="headache">
+				
 			<script type="text/javascript">
 			function show(){
 			const info = document.querySelector(".info");
@@ -210,6 +223,7 @@ if ($check_existance > 0) {
 			minfo.style.display = "inline-block";
 			document.querySelector('#moreinfo2').style.display = "none"
 			}
+			
 			</script>
 
 			<input type="button" class="login-btn" id="moreinfo" value="Complete/Edit Profile!" onclick="show()">
@@ -217,7 +231,7 @@ if ($check_existance > 0) {
 
 			<div class="info" style="display:none">
 
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<form action="" method="post">
 			<input type="number" class="login-btn" name="phone" placeholder="Enter Phone Number!" required>
 			<input type="text" class="login-btn" name="location" placeholder="Enter Location" required>
 			<input type="text" class="login-btn" name="description" placeholder="Add Description" required>
