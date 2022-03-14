@@ -10,3 +10,7 @@ A Minimal Employee Data Record system using PHP, CSS, HTML &amp; MYSQLi [College
 
 3. Require Address and other Employee details for the Registration. ❌
 4. Clarify Employee Record data by categorizing each day record. ❌
+
+## Live Demo
+
+<a href="https://recordemployee.000webhostapp.com/">Live Link</a>
